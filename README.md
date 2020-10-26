@@ -1,6 +1,6 @@
 # Azure Functions To-do app
 
-[![Deploy to Azure](https://azuredeploy.net/deploybutton.svg)](https://azuredeploy.net/)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-storage-account-create%2Fazuredeploy.json)
 
 * API built using Azure Functions, storing data in Azure Table Storage
 * Static web content hosted in Azure Blob Storage
