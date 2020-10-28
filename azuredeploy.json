@@ -34,7 +34,7 @@
                         },
                         {
                             "name": "FUNCTIONS_EXTENSION_VERSION",
-                            "value": "~1"
+                            "value": "~3"
                         },
                         {
                             "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
@@ -46,7 +46,7 @@
                         },
                         {
                             "name": "WEBSITE_NODE_DEFAULT_VERSION",
-                            "value": "6.5.0"
+                            "value": "~10"
                         },
                         {
                             "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
@@ -99,6 +99,9 @@
         {
             "apiVersion": "2019-06-01",
             "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS"
+            },
             "kind": "StorageV2",
             "name": "[variables('storageName')]",
             "location": "[resourceGroup().location]",
@@ -110,7 +113,7 @@
             "apiVersion": "2020-02-02-preview",
             "name": "[parameters('siteName')]",
             "type": "Microsoft.Insights/components",
-            "location": "East US",
+            "location": "[resourceGroup().location]",
             "kind": "web",
             "tags": {
                 "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]": "Resource"
