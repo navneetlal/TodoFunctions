@@ -79,7 +79,7 @@
             },
             "resources": [
                 {
-                    "apiVersion": "2014-04-01",
+                    "apiVersion": "2018-02-01",
                     "name": "web",
                     "type": "sourcecontrols",
                     "dependsOn": [
@@ -92,7 +92,7 @@
                     }
                 }
             ],
-            "apiVersion": "2016-03-01",
+            "apiVersion": "2018-02-01",
             "location": "[resourceGroup().location]",
             "kind": "functionapp"
         },
@@ -108,7 +108,7 @@
         {
             "apiVersion": "2015-05-01",
             "name": "[parameters('siteName')]",
-            "type": "microsoft.insights/components",
+            "type": "Microsoft.Insights/components",
             "location": "East US",
             "tags": {
                 "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]": "Resource"
