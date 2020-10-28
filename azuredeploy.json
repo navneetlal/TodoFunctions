@@ -11,7 +11,7 @@
         }
     },
     "variables": {
-        "storageName": "[concat('todofunc', uniqueString(parameters('siteName'), resourceGroup().id))]"
+        "storageName": "[concat('todo', uniqueString(resourceGroup().id))]"
     },
     "resources": [
         {
@@ -79,7 +79,7 @@
             },
             "resources": [
                 {
-                    "apiVersion": "2018-02-01",
+                    "apiVersion": "2020-06-01",
                     "name": "web",
                     "type": "sourcecontrols",
                     "dependsOn": [
@@ -92,13 +92,14 @@
                     }
                 }
             ],
-            "apiVersion": "2018-02-01",
+            "apiVersion": "2020-06-01",
             "location": "[resourceGroup().location]",
             "kind": "functionapp"
         },
         {
-            "apiVersion": "2015-05-01-preview",
+            "apiVersion": "2019-06-01",
             "type": "Microsoft.Storage/storageAccounts",
+            "kind": "StorageV2",
             "name": "[variables('storageName')]",
             "location": "[resourceGroup().location]",
             "properties": {
@@ -106,19 +107,21 @@
             }
         },
         {
-            "apiVersion": "2015-05-01",
+            "apiVersion": "2020-02-02-preview",
             "name": "[parameters('siteName')]",
             "type": "Microsoft.Insights/components",
             "location": "East US",
+            "kind": "web",
             "tags": {
                 "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('siteName'))]": "Resource"
             },
             "properties": {
                 "ApplicationId": "[parameters('siteName')]",
-                "Request_Source": "IbizaWebAppExtensionCreate"
+                "Application_Type": "web",
+                "Request_Source": "rest"
             }
         }
     ],
-    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0"
 }
